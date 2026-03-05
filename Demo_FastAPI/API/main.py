@@ -15,6 +15,11 @@ async def root():
 async def say_hello(name: str):
 	return {"message": f"infos de {name}!"}
 
-@app.get("/infos2/name")
-async def say_hello(name: str, page: int = 1):
-	return {"message 2": f"infos do {name}!", f"page {page}"}
+@app.get("/infos2/{name}")
+async def say_hello(name: str, page: int = 1, limit: int = 10):
+	return {"message": f"infos de {name}!", f"page": page, f"limit": limit}
+
+	
+@app.get("/pessoas")
+async def create_pessoa(pessoa: Pessoa):
+	return {"Criado":True, f"Pessoa": pessoa}
